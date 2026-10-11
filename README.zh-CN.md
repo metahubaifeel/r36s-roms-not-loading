@@ -58,7 +58,7 @@ R36S **不是安卓**。没有 KPA 设备盘，没有 APK 要装，也没有"首
 
 | 分区 | 起始扇区 | 镜像内大小 | 类型码 | 装什么 |
 |---|---|---|---|---|
-| p1 | 32768 | 100 MiB | `0c` W95 FAT32 (LBA) | `KERNEL`、`.dtb` 文件、`boot.ini`、机型选择脚本 |
+| p1 | 32768 | 100 MiB | `0c` W95 FAT32 (LBA) | `Image`（内核）、`uInitrd`、`boot.ini`、`.dtb` 文件、机型选择脚本 |
 | p2 | 237568 | 6.7 GiB | `83` Linux (ext4) | Linux 根文件系统 |
 | p3 | 14368768 | 100 MiB 占位 | `07` HPFS/NTFS/exFAT | **首次开机后长成整卡并转成 exFAT，就是 `EASYROMS`** |
 
@@ -318,6 +318,7 @@ ArkOS 记录了两种完全不碰读卡器的加游戏方式：
 | 主张 | 来源 |
 |---|---|
 | `roms/` 下 122 个默认目录名 | [christianhaitian/arkos](https://github.com/christianhaitian/arkos) 仓库里的 `defaultromsfolderstructure.tar`，2026-10-11 用 `tar tf` 实跑核对 |
+| `BOOT` 分区里到底装什么，以及真实的 `boot.ini`（`load mmc 1:1 … Image`、`uInitrd`、`rk3326-r36s-linux.dtb`） | [`southoz/dArkOSRE-R36` → `files/BOOT/`](https://github.com/southoz/dArkOSRE-R36/tree/main/files/BOOT) |
 | R36S 这一档机器各平台的目录名、路径、核心、BIOS 文件 | [dArkOSRE-R36 wiki](https://github.com/southoz/dArkOSRE-R36/wiki)（各平台分页） |
 | R36S dArkOS 镜像的真实分区表与尺寸 | [dArkOSen-R36S wiki → Installation](https://github.com/djparentx/dArkOSen-R36S/wiki/Installation) |
 | `EASYROMS` 是 exFAT 游戏分区；Windows 可能需要手动分配盘符；不要删预置目录；用 SSH/Samba/FileBrowser 传文件；macOS 的 `._` 文件会导致不显示；第二卡槽支持的文件系统与 EXT4 的 `1002:1002` 警告 | [ArkOS wiki → Home](https://github.com/christianhaitian/arkos/wiki/Home) 与 [ArkOS FAQ](https://github.com/christianhaitian/arkos/wiki/Frequently-Asked-Questions---RG353V) |

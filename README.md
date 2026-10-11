@@ -81,7 +81,7 @@ codes:
 
 | Partition | Start sector | Size in the image | Type code | What it holds |
 |---|---|---|---|---|
-| p1 | 32768 | 100 MiB | `0c` W95 FAT32 (LBA) | `KERNEL`, the `.dtb` files, `boot.ini`, the model selector |
+| p1 | 32768 | 100 MiB | `0c` W95 FAT32 (LBA) | `Image` (the kernel), `uInitrd`, `boot.ini`, the `.dtb` files, the model selector |
 | p2 | 237568 | 6.7 GiB | `83` Linux (ext4) | the Linux root filesystem |
 | p3 | 14368768 | 100 MiB placeholder | `07` HPFS/NTFS/exFAT | **becomes `EASYROMS`** — grown to fill the card and converted to exFAT on first boot |
 
@@ -372,6 +372,7 @@ capture is in the screenshots.
 | Claim | Source |
 |---|---|
 | The 122 default `roms/` folder names | `defaultromsfolderstructure.tar` in [christianhaitian/arkos](https://github.com/christianhaitian/arkos) — verified by running `tar tf … ` on 2026-10-11 |
+| What actually sits in the `BOOT` partition, and the real `boot.ini` (`load mmc 1:1 … Image`, `uInitrd`, `rk3326-r36s-linux.dtb`) | [`southoz/dArkOSRE-R36` → `files/BOOT/`](https://github.com/southoz/dArkOSRE-R36/tree/main/files/BOOT) |
 | Per-system folder name, path, core and BIOS file for R36S-class builds | [dArkOSRE-R36 wiki](https://github.com/southoz/dArkOSRE-R36/wiki) (per-system pages) |
 | Real partition table and sizes of the R36S dArkOS image | [dArkOSen-R36S wiki → Installation](https://github.com/djparentx/dArkOSen-R36S/wiki/Installation) |
 | `EASYROMS` is the exFAT roms partition; Windows may need a drive letter assigned; do not delete the shipped folders; SSH/Samba/FileBrowser for transfers; macOS `._` files break the listing; second-slot filesystem list and the `1002:1002` EXT4 warning | [ArkOS wiki → Home](https://github.com/christianhaitian/arkos/wiki/Home) and [ArkOS FAQ](https://github.com/christianhaitian/arkos/wiki/Frequently-Asked-Questions---RG353V) |
